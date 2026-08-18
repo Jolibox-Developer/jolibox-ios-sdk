@@ -16,11 +16,11 @@ https://github.com/Jolibox-Developer/jolibox-ios-sdk.git
 import JoliboxSDKAll
 ```
 
-Package 会解析所需的 Google Mobile Ads 与内部二进制依赖。请不要手动添加、嵌入或单独初始化 Google Mobile Ads。
+Package 会解析所需的 Google Mobile Ads 与二进制依赖。请不要手动添加、嵌入或单独初始化 Google Mobile Ads。
 
-## 私有仓库访问
+## 公开仓库访问
 
-当前仓库为私有仓库。每位需要解析该 Package 的开发者和 CI 账号，都必须拥有仓库及 GitHub Release asset 的读取权限，并使用该账号完成 Git/Xcode 认证；未认证的宿主无法下载该 Package。
+当前仓库及其 GitHub Release asset 均可公开读取。宿主解析已批准的 Release 时无需 GitHub 仓库权限或认证信息。
 
 ## App 必要配置
 
@@ -28,10 +28,8 @@ Package 会解析所需的 Google Mobile Ads 与内部二进制依赖。请不�
 
 应用启动时仅初始化一次 Jolibox 基础 SDK；基础 SDK 就绪后仅初始化一次广告 SDK。广告 API、场景配置和宿主接入方式以随 SDK 交付的接入文档为准。
 
-## 发布完整性
+## 版本管理
 
-每个 Package 版本均使用不可变的 GitHub Release asset 和 SHA-256 校验和。已发布的 asset 不得替换；SDK 更新必须发布新版本。
-
-创建 Release 前，必须先将 release commit 推送到 `origin/main`，使用发布脚本校验四个 asset，再从该精确 commit 创建 GitHub Release。脚本会在本地 `HEAD` 与 `origin/main` 不一致时拒绝发布。
+接入时请使用已批准的 Release 版本。已发布的 Release asset 不可替换；SDK 更新时请升级到新版本。
 
 英文文档见 [README.md](README.md)。

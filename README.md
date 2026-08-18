@@ -16,11 +16,11 @@ Select the `0.3.0` release and add `JoliboxSDKAll` to the app target. Import it 
 import JoliboxSDKAll
 ```
 
-The package resolves the required Google Mobile Ads and internal binary dependencies. Do not manually add, embed, or initialize Google Mobile Ads separately.
+The package resolves the required Google Mobile Ads and binary dependencies. Do not manually add, embed, or initialize Google Mobile Ads separately.
 
-## Private Repository Access
+## Public Repository Access
 
-This repository is currently private. Every developer and CI account that resolves the package must have read access to the repository and its GitHub Release assets, and must authenticate Git/Xcode with that account. An unauthenticated host cannot download this package.
+This repository and its GitHub Release assets are publicly readable. Hosts do not need GitHub repository access or credentials to resolve an approved release.
 
 ## Required App Configuration
 
@@ -28,10 +28,8 @@ Add the Google Mobile Ads application identifier supplied by Jolibox to the app 
 
 Initialize the Jolibox base SDK once during application startup, then initialize ads once after the base SDK is ready. The ads API, scene configuration, and host integration are documented in the host integration guide supplied with the SDK release.
 
-## Release Integrity
+## Versioning
 
-Each package release uses immutable GitHub Release assets and SHA-256 checksums. Do not replace a published asset. Publish a new version for every SDK update.
-
-Before creating a release, push the release commit to `origin/main`, verify all four assets with the release script, then create the GitHub Release from that exact commit. The script refuses to create a release when local `HEAD` differs from `origin/main`.
+Use the approved release version for every integration. Published release assets are immutable; update to a new SDK version instead of replacing an existing asset.
 
 For Chinese documentation, see [README_CN.md](README_CN.md).
