@@ -3,6 +3,11 @@ set -euo pipefail
 
 tag="0.3.0"
 assets_dir="${1:?Usage: scripts/release-0.3.0.sh <assets-dir>}"
+commit="$(git rev-parse HEAD)"
+remote_main="$(git ls-remote origin refs/heads/main | awk '{print $1}')"
+
+[[ -n "${remote_main}" ]] || { echo "origin/main does not exist; push the release commit first" >&2; exit 1; }
+[[ "${remote_main}" == "${commit}" ]] || { echo "HEAD must match origin/main before creating the release" >&2; exit 1; }
 
 expected=(
   "Jolibox-0.3.0.xcframework.zip 6400f808d5de19c62c37df6495f63261863191a8bb674870733d9bc7348f2e29"
@@ -17,4 +22,4 @@ for item in "${expected[@]}"; do
   [[ "${actual}" == "${checksum}" ]] || { echo "Checksum mismatch: ${name}" >&2; exit 1; }
 done
 
-gh release create "${tag}" "${assets_dir}"/*.zip --title "${tag}" --generate-notes
+gh release create "${tag}" "${assets_dir}"/*.zip --target "${commit}" --title "${tag}" --generate-notes
